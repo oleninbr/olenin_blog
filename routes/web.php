@@ -18,7 +18,6 @@ Route::middleware([
 
 Route::resource('rest', RestTestController::class)->names('restTest');
 
-use App\Http\Controllers\Blog\PostController;
 
 Route::group(['prefix' => 'blog'], function () {
     Route::resource('posts', PostController::class)->names('blog.posts');
@@ -35,4 +34,9 @@ Route::group($groupData, function () {
     Route::resource('categories', CategoryController::class)
     ->only($methods)
     ->names('blog.admin.categories'); 
+
+    //BlogPost
+    Route::resource('posts', PostController::class)
+    ->except(['show'])                               //не робити маршрут для метода show
+    ->names('blog.admin.posts');
  });
