@@ -20,13 +20,13 @@
                         <tbody>
                             @foreach ($paginator as $item)
                                     <tr>
-                                        <td>{{ $item->id }}</td>    
+                                        <td>{{ $item->parentTitle }}</td>    
                                         <td><a href="{{ route('blog.admin.categories.edit', $item->id) }}">
                                             {{ $item->title }}
                                             </a>
                                         </td>    
-                                        <td @if(in_array($item->parent_id, [0, 1])) style="color:#ccc" @endif>
-                                            {{ $item->parent_id }} {{-- $item->parentCategory->title --}}
+                                        <td @if(in_array($item->parentTitle, [0, 1])) style="color:#ccc" @endif>
+                                            {{ $item->parentTitle }} {{-- $item->parentCategory->title --}}
                                         </td>    
                                     </tr>   
                             @endforeach
