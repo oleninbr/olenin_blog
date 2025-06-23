@@ -7,13 +7,15 @@ use App\Models\BlogPost;
 
 class PostController extends Controller
 {
-    /**
-     * Повертає всі записи блогу з відношеннями user та category
-     */
     public function index()
     {
         $posts = BlogPost::with(['user', 'category'])->get();
+        return response()->json(['data' => $posts]);
+    }
 
-        return response()->json($posts);
+    public function show($id)
+    {
+        $post = BlogPost::with(['user', 'category'])->findOrFail($id);
+        return response()->json(['data' => $post]);
     }
 }
